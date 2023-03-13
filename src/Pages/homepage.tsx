@@ -6,7 +6,6 @@ import {useTheme} from '@mui/material/styles';
 import RestaurantsContainer from 'Containers/Restaurants';
 import RestaurantCategories from 'Components/Filters/restaurants.categories';
 import { useNavigate } from 'react-router-dom';
-import ModalWithChildren from 'Components/Modals';
 
 //Images import 
 
@@ -17,10 +16,12 @@ import partnersImage from "../StaticFiles/Images/partners-image.png"
 import careersImage from "../StaticFiles/Images/careers-image.png"
 import citiesImage from "../StaticFiles/SVGs/cities.svg"
 import shakeHandsImg from "../StaticFiles/SVGs/together.svg"
+import deliveryMan from "../StaticFiles/Images/delivery_with_glovo.png"
+import deliveryBag from "../StaticFiles/Images/calmed-bag.png"
 
-import HeroCategories from 'Containers/Hero.categories';
-import mockCategoriesFromDb from 'Containers/Hero.categories/mockData';
 import CategoriesWidget from "Containers/Hero.categories.widget"
+import CourierAnimation from 'Components/Animations/courier.slide';
+import ArrowAnimation from 'Components/Animations/courier.game';
 
 const Homepage = () => {
 
@@ -54,6 +55,7 @@ const Homepage = () => {
           </Box>
           <Box className='flex-center flex-column'>
             <img src={citiesImage} alt="cities" />
+            <CourierAnimation image={deliveryMan} altText="alt text" />
             <h2>Cele mai bune Categorii din Bucuresti</h2>
             <Box sx={{marginTop: 3, display: "inline-flex", flexWrap: "wrap", gap:1, justifyContent: "center"}}>
               <RestaurantCategories renderButtons />
@@ -104,6 +106,7 @@ const Homepage = () => {
           </Grid> 
         </Container>
       </Box>
+      <ArrowAnimation image={deliveryMan} finishImage={deliveryBag} altText="alt text ceva"/>
     </>
   )
 }

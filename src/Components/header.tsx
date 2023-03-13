@@ -3,8 +3,9 @@ import logo from "../StaticFiles/SVGs/logo.svg";
 import AppButton from './Buttons/button/button';
 import Search from './Inputs/search';
 import { useNavigate } from 'react-router-dom';
-import ModalWithChildren from './Modals';
+import { forwardRef, useEffect, useRef } from 'react';
 
+import SearchWithRefs from './Inputs/search.with.ref';
 const headerStyle = {
   justifyContent: "space-between",
   padding: "30px 7.5%",
@@ -13,8 +14,13 @@ const headerStyle = {
 const Header = () => {
 
   const navigate = useNavigate()
+  const searchRef: any = useRef(null)
 
-  const onClick = () => {alert("Inca nu m-am hotarat unde sa duca butonul asta")}
+  const handleClick = () => {
+    alert("Incepe prin a cauta un restaurant")
+    searchRef.current.select()
+  }
+  
   return (
     
     <header>
@@ -23,13 +29,11 @@ const Header = () => {
           <img onClick={() => {navigate('./')}} src={logo} style={{maxWidth: 119, cursor: "pointer"}} />
         </Grid>
         <Grid item lg={3} md={6} xs={10}>
-          <Search placeholder="Cautare" />
+          {/* <Search  placeholder="Cautare" /> */}
+          <SearchWithRefs ref={searchRef} placeholder="Cautare" />
         </Grid>
         <Grid item lg={2} md={12} xs={12}>
-          <AppButton className='headerButton' color='secondary' label='Sa incepem' onClick={onClick} />
-          {/* <ModalWithChildren >
-            Make modal more abstract, move the styles only on hp widgets and use this as cart
-          </ModalWithChildren> */}
+          <AppButton className='headerButton' color='secondary' label='Sa incepem' onClick={handleClick} />
         </Grid>
       </Grid>
     </header>
